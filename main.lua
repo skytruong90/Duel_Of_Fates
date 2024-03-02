@@ -46,12 +46,16 @@ player2:addCardToDeck(card2)
 local cardPlayer1 = player1:drawCard()
 local cardPlayer2 = player2:drawCard()
 
-print(cardPlayer1.name .. " vs " .. cardPlayer2.name)
+local battleResult = cardPlayer1.name .. " vs " .. cardPlayer2.name
 
 if cardPlayer1.attack > cardPlayer2.defense then
-    print(player1.name .. " wins!")
+    battleResult = battleResult .. "\n" .. player1.name .. " wins!"
 elseif cardPlayer1.attack < cardPlayer2.defense then
-    print(player2.name .. " wins!")
+    battleResult = battleResult .. "\n" .. player2.name .. " wins!"
 else
-    print("It's a draw!")
+    battleResult = battleResult .. "\n" .. "It's a draw!"
+end
+
+function love.draw()
+    love.graphics.print(battleResult, 10, 10)
 end
