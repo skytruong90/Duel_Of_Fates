@@ -1,15 +1,9 @@
--- This is how you define a card
-Card = {}
-Card.__index = Card
+Card = require("card")
 
-function Card:new(name, attack, defense)
-    local card = {}
-    setmetatable(card, Card)
-    card.name = name
-    card.attack = attack
-    card.defense = defense
-    return card
+function love.load()
+    testImage = love.graphics.newImage("Tree_example_VIS.jpg")
 end
+
 
 -- Define a player
 Player = {}
@@ -78,6 +72,8 @@ function love.draw()
         love.graphics.print(player2.name .. "'s Card: " .. cardPlayer2.name, 10, 100)
         love.graphics.print("Attack: " .. cardPlayer2.attack, 10, 120)
         love.graphics.print("Defense: " .. cardPlayer2.defense, 10, 140)
+
+        love.graphics.draw(testImage, 200, 200)
 
         -- Add graphical elements (e.g., card images, character avatars) here
         -- You can load images using love.graphics.newImage() and display them
