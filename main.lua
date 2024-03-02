@@ -43,17 +43,23 @@ player2 = Player:new("Player 2")
 player2:addCardToDeck(card2)
 
 -- Players draw cards and battle
-local cardPlayer1 = player1:drawCard()
-local cardPlayer2 = player2:drawCard()
+local battleResult = ""
 
-local battleResult = cardPlayer1.name .. " vs " .. cardPlayer2.name
+function love.keypressed(key)
+    if key == "space" then
+        local cardPlayer1 = player1:drawCard()
+        local cardPlayer2 = player2:drawCard()
 
-if cardPlayer1.attack > cardPlayer2.defense then
-    battleResult = battleResult .. "\n" .. player1.name .. " wins!"
-elseif cardPlayer1.attack < cardPlayer2.defense then
-    battleResult = battleResult .. "\n" .. player2.name .. " wins!"
-else
-    battleResult = battleResult .. "\n" .. "It's a draw!"
+        battleResult = cardPlayer1.name .. " vs " .. cardPlayer2.name
+
+        if cardPlayer1.attack > cardPlayer2.defense then
+            battleResult = battleResult .. "\n" .. player1.name .. " wins!"
+        elseif cardPlayer1.attack < cardPlayer2.defense then
+            battleResult = battleResult .. "\n" .. player2.name .. " wins!"
+        else
+            battleResult = battleResult .. "\n" .. "It's a draw!"
+        end
+    end
 end
 
 function love.draw()
