@@ -1,29 +1,14 @@
+love = love -- quick hack to stop lsp from showing errors
+
 Card = require("card")
+Player = require("player")
 
 function love.load()
-    testImage = love.graphics.newImage("Tree_example_VIS.jpg")
+    CARD_WIDTH = 50
+    CARD_HEIGHT = 100
 end
 
 
--- Define a player
-Player = {}
-Player.__index = Player
-
-function Player:new(name)
-    local player = {}
-    setmetatable(player, Player)
-    player.name = name
-    player.deck = {}
-    return player
-end
-
-function Player:drawCard()
-    return table.remove(self.deck, 1)
-end
-
-function Player:addCardToDeck(card)
-    table.insert(self.deck, card)
-end
 
 -- Create players with different characters
 player1 = Player:new("Student") -- Character 1
@@ -73,7 +58,6 @@ function love.draw()
         love.graphics.print("Attack: " .. cardPlayer2.attack, 10, 120)
         love.graphics.print("Defense: " .. cardPlayer2.defense, 10, 140)
 
-        love.graphics.draw(testImage, 200, 200)
 
         -- Add graphical elements (e.g., card images, character avatars) here
         -- You can load images using love.graphics.newImage() and display them
