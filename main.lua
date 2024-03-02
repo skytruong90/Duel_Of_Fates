@@ -32,9 +32,17 @@ end
 
 function love.mousepressed(x, y, button, istouch, presses)
     print(x, y)
-    if utils.rectContainsPoint(5,5, 70, 100, x, y) then
+    if utils.rectContainsPoint(5, 495 - Card.height, Card.width, Card.height, x, y) then
         player1:drawCard()
     end
+
+
+    for i, card in ipairs(player1.hand) do
+        if utils.rectContainsPoint(card.x, card.y, Card.width, Card.height, x, y) then
+            
+        end
+    end
+
 end
 
 
@@ -50,10 +58,14 @@ function love.draw()
 
     --draw decks
     love.graphics.setColor(1,1,1)
-    utils.drawSizedImage(Card.rearImage, 5, 395, 0, 70, 100)
+    utils.drawSizedImage(Card.rearImage, 5, 495 - Card.height, 0, Card.width, Card.height)
     love.graphics.print("remaining cards: ".. #player1.deck, 5, 495)
     utils.drawSizedImage(Card.rearImage, 5, 5, 0, 70, 100)
-    love.graphics.print("remaining cards: ".. #player2.deck, 5, 105)
+    love.graphics.print("remaining cards: ".. #player2.deck, 5, 5 + Card.height)
 
 
+    --utils.updateCardRow(player1.hand, 512, 456, 15)
+    --print(" ")
+    love.graphics.setColor(1,1,1)
+    utils.renderCardRow(player1.hand, 512, 456, 15)
 end

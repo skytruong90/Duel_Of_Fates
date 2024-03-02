@@ -3,12 +3,16 @@ Player = {}
 Player.__index = Player
 
 function Player:new(name, health, mana)
-    local player = setmetatable({name = name, deck = {}, hand = {}, health = health, mana = mana}, Player)
+    local player = {name = name, deck = {}, hand = {}, health = health, mana = mana}
+    setmetatable(player, Player)
     return player
 end
 
 function Player:drawCard()
-    self.hand:insert(self.deck.remove())
+    local cardDrawn = table.remove(self.deck)
+    cardDrawn:loadCanvas()
+    table.insert(self.hand, cardDrawn)
+    utils.updateCardRow(player1.hand, 512, 456, 15)
 end
 
 function Player:addCardToDeck(card)

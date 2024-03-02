@@ -1,17 +1,18 @@
-CARD_WIDTH = 70
-CARD_HEIGHT = 100
 
 utils = require("utils")
 
 Card = {}
 Card.__index = Card
+Card.width = 70
+Card.height = 100
+Card.visible = true
 Card.rearImage = love.graphics.newImage("assets/card back black.png")
 Card.backgroundImage = love.graphics.newImage("assets/parchment.jpg")
 Card.cost = 0
 
 function Card:loadBackground()
    love.graphics.setColor(1,1,1)
-   utils.drawSizedImage(self.backgroundImage, 0, 0, 0, CARD_WIDTH, CARD_HEIGHT)
+   utils.drawSizedImage(self.backgroundImage, 0, 0, 0, Card.width, Card.height)
 end
 
 function Card:loadName()

@@ -16,6 +16,34 @@ local utils = {
         return (rectX < pointX) and (rectY < pointY) and
         (rightEdge > pointX) and (bottomEdge > pointY)
 
+    end,
+
+    updateCardRow = function(cardArray, centerX, centerY, offset)
+        local y = centerY - Card.height / 2
+        local totalOffset = Card.width + offset
+        local totalWidth = #cardArray * (totalOffset) - offset
+        local x = centerX - totalWidth / 2
+        x = x - totalOffset
+        love.graphics.setColor(1,1,1)
+        for i, card in ipairs(cardArray) do
+            card.x = x + (totalOffset * i)
+            card.y = y
+            print(card.x)
+        end
+    end,
+
+    renderCardRow = function(cardArray, centerX, centerY, offset)
+        local y = centerY - Card.height / 2
+        local totalOffset = Card.width + offset
+        local totalWidth = #cardArray * (totalOffset) - offset
+        local x = centerX - totalWidth / 2
+        x = x - totalOffset
+        love.graphics.setColor(1,1,1)
+        for i, card in ipairs(cardArray) do
+            if card.visible then
+                love.graphics.draw(card.canvas, x + totalOffset * i, y, 0, 1)
+            end
+        end
     end
 }
 return utils
