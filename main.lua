@@ -31,24 +31,26 @@ function Player:addCardToDeck(card)
     table.insert(self.deck, card)
 end
 
--- Create cards
-card1 = Card:new("Dragon", 5, 5)
-card2 = Card:new("Knight", 3, 3)
+-- Create players with different characters
+player1 = Player:new("Student") -- Character 1
+player2 = Player:new("The Emperor") -- Character 2
 
--- Create players and add cards to their decks
-player1 = Player:new("Player 1")
-player1:addCardToDeck(card1)
-
-player2 = Player:new("Player 2")
-player2:addCardToDeck(card2)
+-- Create decks
+for i = 1, 50 do
+    local attack = math.random(1, 10)
+    local defense = math.random(1, 10)
+    player1:addCardToDeck(Card:new("Card " .. i, attack, defense))
+    player2:addCardToDeck(Card:new("Card " .. i, attack, defense))
+end
 
 -- Players draw cards and battle
-local battleResult = ""
+local battleResult = "Press space to start the game"
+local cardPlayer1, cardPlayer2
 
 function love.keypressed(key)
     if key == "space" then
-        local cardPlayer1 = player1:drawCard()
-        local cardPlayer2 = player2:drawCard()
+        cardPlayer1 = player1:drawCard()
+        cardPlayer2 = player2:drawCard()
 
         battleResult = cardPlayer1.name .. " vs " .. cardPlayer2.name
 
@@ -63,5 +65,26 @@ function love.keypressed(key)
 end
 
 function love.draw()
+    love.graphics.setColor(1, 1, 1) -- Set color to white for the text
     love.graphics.print(battleResult, 10, 10)
+
+    if cardPlayer1 then
+        love.graphics.setColor(0, 0, 1) -- Set color to blue for card display
+        love.graphics.print(player1.name .. "'s Card: " .. cardPlayer1.name, 10, 30)
+        love.graphics.print("Attack: " .. cardPlayer1.attack, 10, 50)
+        love.graphics.print("Defense: " .. cardPlayer1.defense, 10, 70)
+
+        love.graphics.setColor(1, 0, 0) -- Set color to red for card display
+        love.graphics.print(player2.name .. "'s Card: " .. cardPlayer2.name, 10, 100)
+        love.graphics.print("Attack: " .. cardPlayer2.attack, 10, 120)
+        love.graphics.print("Defense: " .. cardPlayer2.defense, 10, 140)
+
+        -- Add graphical elements (e.g., card images, character avatars) here
+        -- You can load images using love.graphics.newImage() and display them
+        -- alongside the card information.
+        -- For example:
+        -- local cardImage1 = love.graphics.newImage("card1.png")
+        -- love.graphics.draw(cardImage1, 200, 30)
+        -- ...
+    end
 end
