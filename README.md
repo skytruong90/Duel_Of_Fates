@@ -1,4 +1,4 @@
-# Duel_Of_Fates
+# Title: Duel Of Fates
 
 **Duel Of Fates** is an innovative card game battle project developed during **HackUSU 2024**, focusing on the exciting realm of game development. This project utilizes **Lua** and the Love2D framework to bring a strategic card battle game to life, inspired by classics like Yu-Gi-Oh.
 
