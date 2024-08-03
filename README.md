@@ -1,5 +1,4 @@
-
-# Title: Duel Of Fates
+# Duel Of Fates
 
 **Duel Of Fates** is a strategic card game project initially developed during **HackUSU 2024**. This version is adapted to use C++ and focuses on streamlined gameplay and simplified mechanics.
 
